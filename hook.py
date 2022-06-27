@@ -40,10 +40,9 @@ else:
 
 try:
     CF_HEADERS = [{
-        'X-Auth-Email': e,
-        'X-Auth-Key'  : k,
+        'Authorization': f'Bearer {token}',
         'Content-Type': 'application/json',
-    } for e,k in zip(os.environ['CF_EMAIL'].split(), os.environ['CF_KEY'].split()) ]
+    } for token in os.environ['CF_TOKEN'].split() ]
 except KeyError:
     logger.error(" + Unable to locate Cloudflare credentials in environment!")
     sys.exit(1)
