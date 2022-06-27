@@ -79,6 +79,7 @@ def _get_zone_id(domain):
     url = "https://api.cloudflare.com/client/v4/zones?name={0}".format(tld)
     for auth in CF_HEADERS:
         r = requests.get(url, headers=auth)
+        logger.debug(' + ZoneID: {0}'.format(r.content))
         r.raise_for_status()
         r = r.json().get('result',())
         if r:
